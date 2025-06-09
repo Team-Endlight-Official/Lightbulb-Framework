@@ -11,10 +11,12 @@ public class GameWindow
     int height = 600;
     string title = "Example 1. Hello World";
 
+    // Define a Application variable.
     Application application;
 
     public GameWindow()
     {
+        // Create a new instance of the application and assign it's action methods.
         application = new Application();
         application.OnInit += Init;
         application.OnLoad += Load;
@@ -22,11 +24,15 @@ public class GameWindow
         application.OnDraw += Draw;
         application.OnClose += Unload;
 
+        // At last run the app.
         application.Run();
     }
 
     void Init()
     {
+        // Here you initialize your scripts and mechanics, not assets and resources.
+        // Initialize the static Renderer. IMPORTANT as setting fullscreen, size and other graphics resizing depends on the Renderer.
+        // It's also possible to set these by "Renderer.SetSize(width, height);".
         Renderer.Init(application);
         application.SetSize(width, height);
         application.SetTitle(title);
@@ -34,6 +40,7 @@ public class GameWindow
 
     void Load()
     {
+        // Here you load your resources/assets.
         Console.WriteLine("Hello my Window!");
     }
 
@@ -44,11 +51,13 @@ public class GameWindow
 
     void Draw()
     {
+        // Clear the Renderer before drawing anything.
         Renderer.Clear(Color.Blue);
     }
 
     void Unload()
     {
+        // Unload all your remaining resources to prevent memory leaking.
         Console.WriteLine("Goodbye my Window!");
     }
 }
